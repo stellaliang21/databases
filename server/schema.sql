@@ -13,7 +13,8 @@ USE chat;
 CREATE TABLE messages (
   id INT NOT NULL AUTO_INCREMENT,
   message TEXT NOT NULL,
-  room_id INT NOT NULL,
+  roomname TEXT NOT NULL,
+  -- room_id INT NOT NULL,
   user_id INT NOT NULL,
   PRIMARY KEY (id)
 );
@@ -31,6 +32,8 @@ CREATE TABLE rooms (
   room TEXT NOT NULL,
   PRIMARY KEY (id)
 );
+
+
 
 /* Create other tables and define schemas for them here! */
 

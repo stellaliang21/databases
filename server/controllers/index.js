@@ -14,7 +14,16 @@ module.exports = {
       //sends request to model to post message data
       //if error, returns error
       //otherwise res.end
-
+      if(!req.body.message || !req.body.username || !req.body.roomname) {
+        res.status(400).send({error: true, message: `Please provide a valid message, username, or roomname`})
+      } else {
+        models.messages.post(req.body, (err, results) => {
+          if (err) {
+            res.send(err);
+          }
+          res.end(results)
+        })
+      }
 
     } // a function which handles posting a message to the database
 
@@ -29,10 +38,23 @@ module.exports = {
       //if no err we write all the users to the response and then send it back
     },
     post: function (req, res) {
+      if (!req.body.username) {
+        res.status(400).send({error:true, message: `Please provide a username when adding a message`})
+      } else {
+        models.users.post(req.body, (err, results) => {
+          if (err) {
+            res.send(err);
+          }
+          res.end(results)
+        })
+      }
       //receives a post request
-      //send request to the model
-      //if err, return err
-      //else res.end
+      //checks if request contains a username property in body
+        //if not, throws 400 error
+        //if so:
+          //send request to the model
+          //if err, return err
+          //else res.end
     }
   }
 };
