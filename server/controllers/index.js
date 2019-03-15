@@ -5,10 +5,11 @@ module.exports = {
     get: function (req, res) {
       models.messages.get((err, results) => {
         if (err) {
+          console.log(err);
           res.end(err);
         }
         res.end(JSON.stringify(results));
-      })
+      });
 
     }, // a function which handles a get request for all messages
     post: function (req, res) {
@@ -34,7 +35,7 @@ module.exports = {
           res.send(err);
         }
         res.end(JSON.stringify(results));
-      })
+      });
       //receives a get request for all users
       //send request to the model for all users
       //if err return err
@@ -53,5 +54,5 @@ module.exports = {
       }
     }
   }
-}
+};
 
